@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "turnos_app/wsgi.py"
+      "dest": "TurneroProyecto/wsgi.py"
     }
   ]
 }
