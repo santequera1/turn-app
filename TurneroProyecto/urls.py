@@ -4,7 +4,7 @@ from turnos_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pagina-principal/', views.pagina_principal, name='pagina_principal'),
+    path('', views.pagina_principal, name='pagina_principal'),
     path('agendar-turno/', views.agendar_turno, name='agendar_turno'),
     path('lista-turnos/', views.lista_turnos, name='lista_turnos'),
     path('atender-turnos/', views.atender_turnos, name='atender_turnos'),
