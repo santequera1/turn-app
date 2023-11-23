@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "TurneroProyecto/wsgi.py",
+      "src": "turnos_app/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.8" }
     }
@@ -9,9 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "TurneroProyecto/wsgi.py"
+      "dest": "turnos_app/wsgi.py"
     }
   ]
 }
-
-
