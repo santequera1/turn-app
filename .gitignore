@@ -33,8 +33,9 @@ requirements_loose2.txt
 datos_clientes.csv
 clientes.csv
 
-# Static collected
-static/
+# Static collected (root level only)
+/static/
+/staticfiles/
 
 # Claude
 .claude/
