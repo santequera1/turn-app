@@ -1,0 +1,17 @@
+{
+  "name": "turnos-django",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./turnos_app/static/turnos_app/css/input.css -o ./turnos_app/static/turnos_app/css/tailwind.css --minify",
+    "watch:css": "npx tailwindcss -i ./turnos_app/static/turnos_app/css/input.css -o ./turnos_app/static/turnos_app/css/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+}
