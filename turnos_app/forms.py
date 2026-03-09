@@ -15,6 +15,9 @@ class TurnoForm(forms.ModelForm):
                 'class': 'h-10 border mt-1 rounded px-4 w-full bg-gray-50',
             })
 
+        # Hacer el campo numero_telefono obligatorio
+        self.fields['numero_telefono'].required = True
+
 
 class ReiniciarNumerosForm(forms.Form):
     reiniciar = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
