@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-from celery.schedules import crontab
 from django.core.management.utils import get_random_secret_key
 
 
@@ -43,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_twilio',
-    'channels',
     'compressor',  # new
     'turnos_app',
 
@@ -79,16 +77,7 @@ TEMPLATES = [
 ]
 
 
-# Configuración de Channels
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Utiliza una capa en memoria para pruebas
-    },
-}
-
 WSGI_APPLICATION = 'TurneroProyecto.wsgi.application'
-ASGI_APLICATION = 'config.asgi.aplication'
-ASGI_APLICATION = 'turnos_app.asgi.aplication'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -168,19 +157,3 @@ EMAIL_HOST_PASSWORD = 'Colombia123.'
 
 
 COMPRESS_ENABLED = True
-
-# Configuración de Celery
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-
-# Configuración de Celery Beat (el planificador)
-CELERY_BEAT_SCHEDULE = {
-    'enviar-correo-diario': {
-        'task': 'turnos_app/views.enviar_correo_atencion',  # Cambia esto por la ruta a tu función
-        'schedule': crontab(hour=8, minute=0),  # Programa para que se ejecute a las 8:00 AM
-    },
-}
