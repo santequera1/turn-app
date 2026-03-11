@@ -11,9 +11,6 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.utils import timezone
 from django.db.models import Q, Count
-from twilio.rest import Client
-from twilio.base.exceptions import TwilioRestException
-from .send_sms import sendsms
 from datetime import datetime
 import os
 import csv
@@ -52,7 +49,6 @@ def agendar_turno(request):
                 turno.cliente_frecuente = cliente_frecuente
 
             turno.save()
-            sendsms(turno.numero_telefono, turno.nombre_cliente, turno.referencia_motocicleta, turno.numero_turno)
 
     else:
         form = TurnoForm()
@@ -80,31 +76,6 @@ def buscar_clientes(request):
     ]
     return JsonResponse(data, safe=False)
 
-
-def llamar_cliente(request, turno_id):
-    turno = Turno.objects.get(id=turno_id)
-
-    account_sid = 'ACe7a057609a825f9966c7490f97a62726'
-    auth_token = '8d9afaa431a0f9913c310a1d35ec9883'
-    client = Client(account_sid, auth_token)
-
-    numero_cliente = turno.numero_telefono
-
-    try:
-        mensaje = "¡Hola " + turno.nombre_cliente + "! Tu turno en Motos Top (#" + str(turno.numero_turno) + ") está listo para ser atendido en nuestro taller."
-
-        message = client.messages.create(
-            body=mensaje,
-            from_='+19285850221',
-            to='+57' + numero_cliente
-        )
-
-        print(message.sid)
-        return redirect('atender_turnos')
-
-    except TwilioRestException as e:
-        print(f"Error al enviar el mensaje a {numero_cliente}: {e}")
-        return redirect('atender_turnos')
 
 
 def pagina_principal(request):

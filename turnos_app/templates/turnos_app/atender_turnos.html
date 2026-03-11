@@ -95,16 +95,6 @@
             Finalizar
         </button>
 
-        <!-- Botón llamar -->
-        <a href="{% url 'llamar_cliente' turno.id %}" class="bg-green-900 hover:bg-blue-700 text-white text-xs py-2 px-4 rounded mx-2" id="boton-alerta">
-            Llamar
-        </a>
-
-        <!-- Botón avisar -->
-        <a href="{% url 'llamar_cliente' turno.id %}" class="bg-green-900 hover:bg-blue-700 text-white text-xs py-2 px-4 rounded mx-2 llamar-cliente" 
-           data-nombre="{{ turno.nombre_cliente }}" onclick="almacenarCliente('{{ turno.nombre_cliente }}')">
-            Avisar
-        </a>
          <label class="switch">
         
         <input type="checkbox" onchange="actualizarEstadoReparacion(this, '{{ turno.id }}');" data-nombre-cliente="{{ turno.nombre_cliente }}" {% if turno.en_reparacion %}checked{% endif %}>
